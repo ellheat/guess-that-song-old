@@ -1,16 +1,12 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import envConfig from 'env-config';
 import { FormattedMessage } from 'react-intl';
-import io from 'socket.io-client';
 
-import messages from './home.messages';
-import { Container, Title } from './home.styles';
+import messages from './panel.messages';
+import { Container, Title } from './panel.styles';
 
-const SOCKET = io(`${envConfig.url}:${envConfig.socketPort}`);
-
-export class Home extends PureComponent {
+export class Panel extends PureComponent {
   static propTypes = {
     match: PropTypes.object.isRequired,
     location: PropTypes.object.isRequired,
@@ -19,18 +15,15 @@ export class Home extends PureComponent {
     }).isRequired,
   };
 
-  componentDidMount() {
-    SOCKET.emit('connection');
-  }
-
   render() {
     return (
       <Container>
-        <Helmet title="Homepage" />
+        <Helmet title="Admin panel" />
 
         <Title>
           <FormattedMessage {...messages.title} />
         </Title>
+
       </Container>
     );
   }
