@@ -4,21 +4,19 @@ const characters = require('../json/characters');
 const CHARACTERS = [];
 
 
-const getCharacters = () => {
-  return new Promise((resolve) => {
-    const animals = characters.characters;
-    const adverbs = characters.adverbs;
-    const colors = characters.colors;
+const getCharacters = () => new Promise((resolve) => {
+  const animals = characters.characters;
+  const adverbs = characters.adverbs;
+  const colors = characters.colors;
 
-    animals.forEach(animal => {
-      const randomColor = colors[random(0, colors.length - 1)];
-      const randomAdverb = adverbs[random(0, adverbs.length - 1)];
+  animals.forEach(animal => {
+    const randomColor = colors[random(0, colors.length - 1)];
+    const randomAdverb = adverbs[random(0, adverbs.length - 1)];
 
-      CHARACTERS.push({ name: `${randomAdverb} ${animal}`, color: randomColor });
-    });
-    resolve();
+    CHARACTERS.push({ name: `${randomAdverb} ${animal}`, color: randomColor });
   });
-};
+  resolve();
+});
 
 const characterPicker = () => {
   const randomNumberOfCharacter = random(0, CHARACTERS.length - 1);

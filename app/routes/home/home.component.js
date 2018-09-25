@@ -8,7 +8,7 @@ import io from 'socket.io-client';
 import messages from './home.messages';
 import { Container, Title } from './home.styles';
 
-const SOCKET = io(`${envConfig.url}:${envConfig.socketPort}`);
+const SOCKET = io.connect(`${envConfig.url}:${envConfig.socketPort}`);
 
 export class Home extends PureComponent {
   static propTypes = {
