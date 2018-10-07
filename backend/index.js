@@ -12,7 +12,7 @@ const { addUser, getUsersList } = require('./modules/users');
 const app = express();
 const io = socketio.listen(app.listen(port.sockets));
 
-io.sockets.on(socket.connect, () => {
+io.sockets.on(socket.connect, (e) => {
   let character = characterPicker();
 
   addUser(character);
