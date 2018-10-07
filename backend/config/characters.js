@@ -9,12 +9,11 @@ const getCharacters = () => new Promise((resolve) => {
   const adjectives = characters.adjectives;
   const colors = characters.colors;
 
-  animals.forEach((animal, index) => {
+  animals.forEach(animal => {
     const randomColor = colors[random(0, colors.length - 1)];
     const randomAdjective = adjectives[random(0, adjectives.length - 1)];
 
     CHARACTERS.push({
-      id: index,
       name: `${randomAdjective} ${animal}`,
       color: randomColor,
       points: 0,

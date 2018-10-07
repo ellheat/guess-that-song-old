@@ -2,25 +2,17 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 
 import { mapDispatchToProps } from '../home.container';
-import { LocalesActions } from '../../../modules/locales/locales.redux';
-import { MaintainersActions } from '../../../modules/maintainers/maintainers.redux';
+import { UsersActions } from '../../../modules/users/users.redux';
 
 
 describe('Home: Container', () => {
   describe('mapDispatchToProps', () => {
-    it('should call LocalesActions.setLanguage', () => {
+    it('should call UsersActions.connectUser', () => {
       const dispatch = spy();
 
-      mapDispatchToProps(dispatch).setLanguage();
+      mapDispatchToProps(dispatch).connectUser();
 
-      expect(dispatch).to.have.been.calledWith(LocalesActions.setLanguage());
-    });
-    it('should call MaintainersActions.fetch', () => {
-      const dispatch = spy();
-
-      mapDispatchToProps(dispatch).fetchMaintainers();
-
-      expect(dispatch).to.have.been.calledWith(MaintainersActions.fetch());
+      expect(dispatch).to.have.been.calledWith(UsersActions.connectUser());
     });
   });
 });

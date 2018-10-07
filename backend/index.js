@@ -7,7 +7,7 @@ const port = require('./config/ports');
 const socket = require('./config/sockets');
 
 const { characterPicker, getCharacters } = require('./config/characters');
-const { addUser, getUsersList } = require('./modules/users');
+const { addUser, removeUser, getUsersList } = require('./modules/users');
 
 const app = express();
 const io = socketio.listen(app.listen(port.sockets));
@@ -15,12 +15,17 @@ const io = socketio.listen(app.listen(port.sockets));
 io.sockets.on(socket.connect, (e) => {
   let character = characterPicker();
 
-  addUser(character);
+  addUser(character, e.client.id);
   io.sockets.emit(socket.addUser, character);
   io.sockets.emit(socket.usersLists, getUsersList());
 
-  io.sockets.emit(socket.join, character);
-  console.log(`${character.name} connected - (${e.handshake.headers['user-agent']})`.success); // eslint-disable-line
+  e.on(socket.disconnect, () => {
+    removeUser(e.client.id).then((characterName) => {
+      console.log(`${characterName} has been disconnected`.warning); // eslint-disable-line
+    });
+  });
+
+  console.log(`${character.name} connected`.success, `- (${e.handshake.headers['user-agent']})`); // eslint-disable-line
 });
 
 io.sockets.on(socket.disconnect, () => {
@@ -30,4 +35,4 @@ io.sockets.on(socket.disconnect, () => {
 app.listen(port.api, () => {
   console.log(`Backend listening on port ${port.api}!`.success); // eslint-disable-line
   getCharacters().then(() => console.log('Characters created'.success)); // eslint-disable-line
-}); // eslint-disable-line
+});
