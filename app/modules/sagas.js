@@ -1,10 +1,10 @@
 import { all, fork } from 'redux-saga/effects';
-import maintainersSaga from './maintainers/maintainers.sagas';
+import usersSaga from './users/users.sagas';
 //<-- IMPORT MODULE SAGA -->
 
 export default function* rootSaga() {
   yield all([
-    fork(maintainersSaga),
+    fork(usersSaga),
     //<-- INJECT MODULE SAGA -->
   ]);
 }

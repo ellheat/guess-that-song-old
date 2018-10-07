@@ -2,6 +2,6 @@ const colors = require('colors');
 
 colors.setTheme({
   success: 'green',
-  warn: 'yellow',
+  warning: 'yellow',
   error: 'red',
 });

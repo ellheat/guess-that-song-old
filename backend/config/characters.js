@@ -6,14 +6,20 @@ const CHARACTERS = [];
 
 const getCharacters = () => new Promise((resolve) => {
   const animals = characters.characters;
-  const adverbs = characters.adverbs;
+  const adjectives = characters.adjectives;
   const colors = characters.colors;
 
-  animals.forEach(animal => {
+  animals.forEach((animal, index) => {
     const randomColor = colors[random(0, colors.length - 1)];
-    const randomAdverb = adverbs[random(0, adverbs.length - 1)];
+    const randomAdjective = adjectives[random(0, adjectives.length - 1)];
 
-    CHARACTERS.push({ name: `${randomAdverb} ${animal}`, color: randomColor });
+    CHARACTERS.push({
+      id: index,
+      name: `${randomAdjective} ${animal}`,
+      color: randomColor,
+      points: 0,
+      correctAnswers: 0,
+    });
   });
   resolve();
 });

@@ -6,20 +6,15 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'ramda';
 
 import { Home } from './home.component';
-import { MaintainersActions } from '../../modules/maintainers/maintainers.redux';
-import { selectMaintainersItems } from '../../modules/maintainers/maintainers.selectors';
-import { LocalesActions } from '../../modules/locales/locales.redux';
-import { selectLocalesLanguage } from '../../modules/locales/locales.selectors';
+import { UsersActions } from '../../modules/users/users.redux';
 
 
 const mapStateToProps = createStructuredSelector({
-  items: selectMaintainersItems,
-  language: selectLocalesLanguage,
+
 });
 
 export const mapDispatchToProps = (dispatch) => bindActionCreators({
-  fetchMaintainers: MaintainersActions.fetch,
-  setLanguage: LocalesActions.setLanguage,
+  connectUser: UsersActions.connectUser,
 }, dispatch);
 
 export default compose(

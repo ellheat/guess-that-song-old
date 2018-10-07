@@ -1,5 +1,8 @@
 module.exports = {
-  connection: 'connection',
-  join: 'join',
-  addPoint: 'addPoint',
+  connect: 'connect',
+  disconnect: 'disconnect',
+  addUser: 'addUser',
+  removeUser: 'removeUser',
+  usersLists: 'usersLists',
+  addPoints: 'addPoints',
 };
