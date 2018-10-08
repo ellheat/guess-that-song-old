@@ -10,7 +10,6 @@ import { UsersActions } from '../../modules/users/users.redux';
 
 
 const mapStateToProps = createStructuredSelector({
-
 });
 
 export const mapDispatchToProps = (dispatch) => bindActionCreators({

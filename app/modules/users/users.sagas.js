@@ -2,12 +2,16 @@ import envConfig from 'env-config';
 import { put, takeLatest, call, take } from 'redux-saga/effects';
 import { UsersTypes } from './users.redux';
 import { usersListeners } from './users.listeners';
-import { socket } from '../../services/socket';
+import { SocketActions } from '../socket/socket.redux';
+import Socket from '../../services/socket';
 
+const socket = new Socket();
 
 export function* connectUser() {
-  socket.emit(envConfig.socketEvents.connect);
+  socket.initialize();
+  socket.io.emit(envConfig.socketEvents.connect);
 
+  yield put(SocketActions.createSocket(socket.io));
   const channel = yield call(usersListeners, socket);
   while (true) {
     const action = yield take(channel);
@@ -15,11 +19,6 @@ export function* connectUser() {
   }
 }
 
-export function* disconnectUser() {
-  socket.emit(envConfig.disconnect);
-}
-
 export default function* usersSaga() {
   yield takeLatest(UsersTypes.CONNECT_USER, connectUser);
-  yield takeLatest(UsersTypes.DISCONNECT_USER, disconnectUser);
 }

@@ -1,24 +1,23 @@
 import envConfig from 'env-config';
 import { eventChannel } from 'redux-saga';
 import { UsersActions } from './users.redux';
-import { socket } from '../../services/socket';
 
-function addUser(emit) {
-  socket.on(envConfig.socketEvents.addUser, (data) => {
+function addUser(emit, socket) {
+  socket.io.on(envConfig.socketEvents.addUser, (data) => {
     emit(UsersActions.connectUserSuccess(data));
   });
 }
 
-function getUsersList(emit) {
-  socket.on(envConfig.socketEvents.usersLists, (data) => {
+function getUsersList(emit, socket) {
+  socket.io.on(envConfig.socketEvents.usersLists, (data) => {
     emit(UsersActions.getUsersList(data));
   });
 }
 
-export function usersListeners() {
+export function usersListeners(socket) {
   return eventChannel(emit => {
-    addUser(emit);
-    getUsersList(emit);
+    addUser(emit, socket);
+    getUsersList(emit, socket);
     return () => {};
   });
 }

@@ -1,9 +1,8 @@
-
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
   title: {
-    id: 'panel.title',
-    defaultMessage: 'Admin panel',
+    id: 'status.title',
+    defaultMessage: 'Game Status',
   },
 });

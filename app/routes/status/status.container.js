@@ -5,7 +5,7 @@ import { hot } from 'react-hot-loader';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'ramda';
 
-import { Panel } from './panel.component';
+import { Status } from './status.component';
 
 
 
@@ -21,4 +21,4 @@ export default compose(
   hot(module),
   connect(mapStateToProps, mapDispatchToProps),
   withRouter
-)(Panel);
+)(Status);
