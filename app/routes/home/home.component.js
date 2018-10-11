@@ -5,10 +5,12 @@ import { FormattedMessage } from 'react-intl';
 
 import messages from './home.messages';
 import { Container, Title } from './home.styles';
+import { UsersList } from '../components/usersList/usersList.component';
 
 export class Home extends PureComponent {
   static propTypes = {
     connectUser: PropTypes.func.isRequired,
+    usersList: PropTypes.object,
   };
 
   componentDidMount() {
@@ -16,6 +18,8 @@ export class Home extends PureComponent {
   }
 
   render() {
+    const { usersList } = this.props;
+
     return (
       <Container>
         <Helmet title="Homepage" />
@@ -23,6 +27,7 @@ export class Home extends PureComponent {
         <Title>
           <FormattedMessage {...messages.title} />
         </Title>
+        <UsersList usersList={usersList} />
       </Container>
     );
   }

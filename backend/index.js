@@ -21,6 +21,7 @@ io.sockets.on(socket.connect, (e) => {
 
   e.on(socket.disconnect, () => {
     removeUser(e.client.id).then((characterName) => {
+      io.sockets.emit(socket.usersLists, getUsersList());
       console.log(`${characterName} has been disconnected`.warning); // eslint-disable-line
     });
   });
