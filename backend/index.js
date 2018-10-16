@@ -8,6 +8,7 @@ const socket = require('./config/sockets');
 
 const { characterPicker, getCharacters } = require('./config/characters');
 const { addUser, removeUser, getUsersList } = require('./modules/users');
+const { getSpotifyToken, getPlaylist } = require('./modules/spotify');
 
 const app = express();
 const io = socketIO.listen(app.listen(port.sockets));
@@ -36,4 +37,8 @@ io.sockets.on(socket.disconnect, () => {
 app.listen(port.api, () => {
   console.log(`Backend listening on port ${port.api}!`.success); // eslint-disable-line
   getCharacters().then(() => console.log('Characters created'.success)); // eslint-disable-line
+  getSpotifyToken().then(() => {
+    console.log('Token created'.success); // eslint-disable-line
+    getPlaylist();
+  });
 });
