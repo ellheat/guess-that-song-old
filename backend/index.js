@@ -1,7 +1,7 @@
 require('./config/colors');
 
 const express = require('express');
-const socketio = require('socket.io');
+const socketIO = require('socket.io');
 
 const port = require('./config/ports');
 const socket = require('./config/sockets');
@@ -10,7 +10,7 @@ const { characterPicker, getCharacters } = require('./config/characters');
 const { addUser, removeUser, getUsersList } = require('./modules/users');
 
 const app = express();
-const io = socketio.listen(app.listen(port.sockets));
+const io = socketIO.listen(app.listen(port.sockets));
 
 io.sockets.on(socket.connect, (e) => {
   let character = characterPicker();
