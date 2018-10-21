@@ -3,7 +3,6 @@ const spotifyKeys = require('../json/spotify');
 const SpotifyWebApi = require('spotify-web-api-node');
 
 let TRACKS_ARRAY = [];
-let OFFSET = 0;
 const LIMIT = 100;
 
 
@@ -37,15 +36,24 @@ const getPlaylistCountTotalItems = () => new Promise((resolve, reject) => {
   );
 });
 
-const getPlaylistItems = () => new Promise((resolve, reject) => {
+const getPlaylistItems = (offset) => new Promise((resolve, reject) => {
   spotifyApi.getPlaylistTracks(spotifyKeys.playlistId, {
-    offset: OFFSET,
+    offset,
     limit: LIMIT,
     fields: 'items',
   }).then(
     data => {
-      OFFSET += LIMIT;
-      TRACKS_ARRAY = concat(TRACKS_ARRAY, data.body.items.filter(item => item.track.preview_url));
+      const trackArrayWithShortInfo = data.body.items.map(item => {
+        return {
+          id: item.track.id,
+          artist: item.track.artists[0].name,
+          title: item.track.name,
+          album: item.track.album.name,
+          url: item.track.href,
+          previewUrl: item.track.preview_url,
+        };
+      });
+      TRACKS_ARRAY = concat(TRACKS_ARRAY, trackArrayWithShortInfo);
       resolve();
     },
     err => {
@@ -56,8 +64,10 @@ const getPlaylistItems = () => new Promise((resolve, reject) => {
 });
 
 const getPlaylistAllItems = (totalPlaylistTracks) => new Promise(async (resolve) => {
-  while (OFFSET <= totalPlaylistTracks) {
-    await getPlaylistItems();
+  let offset = 0;
+  while (offset <= totalPlaylistTracks) {
+    await getPlaylistItems(offset);
+    offset += LIMIT;
   }
   resolve();
 });
@@ -67,6 +77,7 @@ const getPlaylist = () => new Promise(async () => {
     console.log(`All playlist tracks: ${totalPlaylistTracks}`.information); // eslint-disable-line
     await getPlaylistAllItems(totalPlaylistTracks);
   });
+  console.log(TRACKS_ARRAY[0]); // eslint-disable-line
   console.log(`Downloaded tracks: ${TRACKS_ARRAY.length}`.information); // eslint-disable-line
 });
 
@@ -74,4 +85,5 @@ const getPlaylist = () => new Promise(async () => {
 module.exports = {
   getSpotifyToken,
   getPlaylist,
+  TRACKS_ARRAY,
 };

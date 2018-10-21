@@ -20,10 +20,6 @@ io.sockets.on(socket.connect, (e) => {
   e.emit(socket.addUser, character);
   io.sockets.emit(socket.usersLists, getUsersList());
 
-  // getPlaylist().then(data => {
-  //   e.emit(socket.getSong, data);
-  // });
-
   e.on(socket.disconnect, () => {
     removeUser(e.client.id).then((characterName) => {
       io.sockets.emit(socket.usersLists, getUsersList());
