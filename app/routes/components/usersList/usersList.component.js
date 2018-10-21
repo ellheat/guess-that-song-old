@@ -13,7 +13,6 @@ export class UsersList extends PureComponent {
   render() {
     const { usersList } = this.props;
 
-    console.log(usersList.toJS());
     return (
       <Container>
         <Title>

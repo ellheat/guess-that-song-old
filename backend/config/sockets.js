@@ -5,4 +5,5 @@ module.exports = {
   removeUser: 'removeUser',
   usersLists: 'usersLists',
   addPoints: 'addPoints',
+  getSong: 'getSong',
 };

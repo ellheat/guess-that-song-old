@@ -17,8 +17,12 @@ io.sockets.on(socket.connect, (e) => {
   let character = characterPicker();
 
   addUser(character, e.client.id);
-  io.sockets.emit(socket.addUser, character);
+  e.emit(socket.addUser, character);
   io.sockets.emit(socket.usersLists, getUsersList());
+
+  // getPlaylist().then(data => {
+  //   e.emit(socket.getSong, data);
+  // });
 
   e.on(socket.disconnect, () => {
     removeUser(e.client.id).then((characterName) => {

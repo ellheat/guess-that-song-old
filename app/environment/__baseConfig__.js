@@ -8,5 +8,6 @@ export default {
     removeUser: 'removeUser',
     usersLists: 'usersLists',
     addPoints: 'addPoints',
+    getSong: 'getSong',
   },
 };

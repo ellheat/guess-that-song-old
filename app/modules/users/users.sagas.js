@@ -2,6 +2,7 @@ import envConfig from 'env-config';
 import { put, takeLatest, call, take } from 'redux-saga/effects';
 import { UsersTypes } from './users.redux';
 import { usersListeners } from './users.listeners';
+import { SongsActions } from '../songs/songs.redux';
 import { SocketActions } from '../socket/socket.redux';
 import Socket from '../../services/socket';
 
@@ -12,6 +13,8 @@ export function* connectUser() {
   socket.io.emit(envConfig.socketEvents.connect);
 
   yield put(SocketActions.createSocket(socket.io));
+  yield put(SongsActions.getSong());
+
   const channel = yield call(usersListeners, socket);
   while (true) {
     const action = yield take(channel);
