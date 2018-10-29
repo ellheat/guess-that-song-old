@@ -4,7 +4,6 @@ const express = require('express');
 const socketIO = require('socket.io');
 
 const port = require('./config/ports');
-const socket = require('./config/sockets');
 
 const { characterPicker, getCharacters } = require('./config/characters');
 const { addUser, removeUser, getUsersList } = require('./modules/users');
@@ -13,16 +12,20 @@ const { getSpotifyToken, getPlaylist } = require('./modules/spotify');
 const app = express();
 const io = socketIO.listen(app.listen(port.sockets));
 
-io.sockets.on(socket.connect, (e) => {
+const socket = new Socket(io);
+
+socket.initialize();
+
+io.sockets.on(socket.event.connect, (e) => {
   let character = characterPicker();
 
   addUser(character, e.client.id);
-  e.emit(socket.addUser, character);
-  io.sockets.emit(socket.usersLists, getUsersList());
+  e.emit(socket.event.addPlayer, character);
+  io.sockets.emit(socket.event.playersList, getUsersList());
 
-  e.on(socket.disconnect, () => {
+  e.on(socket.event.disconnect, () => {
     removeUser(e.client.id).then((characterName) => {
-      io.sockets.emit(socket.usersLists, getUsersList());
+      io.sockets.emit(socket.event.playersList, getUsersList());
       console.log(`${characterName} has been disconnected`.warning); // eslint-disable-line
     });
   });
@@ -30,7 +33,7 @@ io.sockets.on(socket.connect, (e) => {
   console.log(`${character.name} connected`.success, `- (${e.handshake.headers['user-agent']})`); // eslint-disable-line
 });
 
-io.sockets.on(socket.disconnect, () => {
+io.sockets.on(socket.event.disconnect, () => {
   console.log(`${character.name} has been diconnected`.warning); // eslint-disable-line
 });
 
@@ -42,3 +45,9 @@ app.listen(port.api, () => {
     getPlaylist();
   });
 });
+
+
+modules.export = {
+  app,
+  port,
+};
