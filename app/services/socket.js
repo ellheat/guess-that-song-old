@@ -6,7 +6,7 @@ export default class Socket {
   socket = null;
 
   initialize() {
-    this.socket = io(`${envConfig.url}:${envConfig.socketPort}`);
+    this.socket = io(`${envConfig.url}:${envConfig.socket.port}`);
   }
 
   get io() {

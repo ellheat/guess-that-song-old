@@ -1,3 +1,7 @@
 require('./config/colors');
-require('./server');
-require('./modules');
+
+const { configureServer } = require('./server/app');
+
+configureServer().then(() => {
+  require('./modules');
+});

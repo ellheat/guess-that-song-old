@@ -3,7 +3,7 @@ import { Record } from 'immutable';
 
 export const { Types: SocketTypes, Creators: SocketActions } = createActions({
   createSocket: ['data'],
-}, { prefix: 'USERS_' });
+}, { prefix: 'SOCKET_' });
 
 const SocketRecord = new Record({
   io: null,

@@ -26,6 +26,7 @@ const events = {
   playersList: 'playersList',
   addPoints: 'addPoints',
   getSong: 'getSong',
+  getPlaylist: 'getPlaylist',
 };
 
 module.exports = {

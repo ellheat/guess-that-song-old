@@ -72,12 +72,13 @@ const getPlaylistAllItems = (totalPlaylistTracks) => new Promise(async (resolve)
   resolve();
 });
 
-const getPlaylist = () => new Promise(async () => {
+const getPlaylist = () => new Promise(async (resolve) => {
   await getPlaylistCountTotalItems().then(async (totalPlaylistTracks) => {
     console.log(`All playlist tracks: ${totalPlaylistTracks}`.information); // eslint-disable-line
     await getPlaylistAllItems(totalPlaylistTracks);
   });
   console.log(`Downloaded tracks: ${TRACKS_ARRAY.length}`.information); // eslint-disable-line
+  resolve();
 });
 
 

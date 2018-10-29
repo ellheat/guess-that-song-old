@@ -13,4 +13,4 @@ dist
 npm-debug.log
 .idea
 app/environment/local.js
-backend/modules/spotify.js
+backend/json/spotify.json
