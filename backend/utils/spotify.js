@@ -77,7 +77,6 @@ const getPlaylist = () => new Promise(async () => {
     console.log(`All playlist tracks: ${totalPlaylistTracks}`.information); // eslint-disable-line
     await getPlaylistAllItems(totalPlaylistTracks);
   });
-  console.log(TRACKS_ARRAY[0]); // eslint-disable-line
   console.log(`Downloaded tracks: ${TRACKS_ARRAY.length}`.information); // eslint-disable-line
 });
 

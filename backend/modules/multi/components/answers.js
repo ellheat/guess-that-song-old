@@ -1,4 +1,4 @@
-const { TRACKS_ARRAY } = require('./spotify');
+const { TRACKS_ARRAY } = require('../../../utils/spotify');
 
 let TRACKS_ANSWER_ARRAY = [];
 
