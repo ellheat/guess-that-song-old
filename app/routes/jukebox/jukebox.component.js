@@ -19,7 +19,9 @@ export class Jukebox extends PureComponent {
   render() {
     const { playlist } = this.props;
 
-    console.log('playlist', playlist);
+    if (playlist) {
+      console.log('playlist', playlist);
+    }
 
     return (
       <Container>

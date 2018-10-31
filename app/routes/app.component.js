@@ -17,9 +17,11 @@ export class App extends PureComponent {
       push: PropTypes.func.isRequired,
     }).isRequired,
     location: PropTypes.object.isRequired,
+    initializeSocket: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
+    this.props.initializeSocket();
     const language = this.props.match.params.lang || DEFAULT_LOCALE;
     if (appLocales.indexOf(language) === -1) {
       this.props.setLanguage(DEFAULT_LOCALE);
@@ -37,10 +39,10 @@ export class App extends PureComponent {
     return (
       <Fragment>
         <Helmet
-          titleTemplate="%s - Apptension React Boilerplate"
-          defaultTitle="Apptension React Boilerplate"
+          titleTemplate="%s - Guess That Song"
+          defaultTitle="Guess That Song"
           meta={[
-            { name: 'description', content: 'Apptension\'s React Boilerplate application' },
+            { name: 'description', content: 'Guess That Song game' },
           ]}
         />
 

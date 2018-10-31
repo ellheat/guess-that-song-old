@@ -3,7 +3,7 @@ const port = require('../config/ports');
 const app = express();
 
 const { getCharacters } = require('../config/characters');
-const { getSpotifyToken, getPlaylist } = require('../utils/spotify');
+const { getSpotifyToken, fetchPlaylist } = require('../utils/spotify');
 
 
 const configureServer = () => new Promise((resolve) => {
@@ -12,7 +12,7 @@ const configureServer = () => new Promise((resolve) => {
     getCharacters().then(() => console.log('Characters created'.success)); // eslint-disable-line
     getSpotifyToken().then(() => {
       console.log('Spotify token created'.success); // eslint-disable-line
-      getPlaylist().then(() => resolve());
+      fetchPlaylist().then(() => resolve());
     });
   });
 });

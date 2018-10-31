@@ -4,7 +4,6 @@ import { JukeboxActions } from './jukebox.redux';
 
 function getPlaylist(emit, socket) {
   socket.io.on(envConfig.socket.event.getPlaylist, (data) => {
-    console.log('playlist', data);
     emit(JukeboxActions.getPlaylistSuccess(data));
   });
 }

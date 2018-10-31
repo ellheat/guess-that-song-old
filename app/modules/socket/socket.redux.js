@@ -2,7 +2,8 @@ import { createActions, createReducer } from 'reduxsauce';
 import { Record } from 'immutable';
 
 export const { Types: SocketTypes, Creators: SocketActions } = createActions({
-  createSocket: ['data'],
+  initialize: [],
+  initializeSuccess: ['data'],
 }, { prefix: 'SOCKET_' });
 
 const SocketRecord = new Record({
@@ -11,8 +12,8 @@ const SocketRecord = new Record({
 
 export const INITIAL_STATE = new SocketRecord({});
 
-const createSocketHandler = (state = INITIAL_STATE, action) => state.set('io', action.data);
+const initializeSuccessHandler = (state = INITIAL_STATE, action) => state.set('io', action.data);
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [SocketTypes.CREATE_SOCKET]: createSocketHandler,
+  [SocketTypes.INITIALIZE_SUCCESS]: initializeSuccessHandler,
 });

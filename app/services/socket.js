@@ -9,6 +9,10 @@ export default class Socket {
     this.socket = io(`${envConfig.url}:${envConfig.socket.port}`);
   }
 
+  changeNamespace(namespace) {
+    this.socket.nsp = namespace;
+  }
+
   get io() {
     return this.socket;
   }
