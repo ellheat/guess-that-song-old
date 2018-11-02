@@ -7,6 +7,7 @@ import { compose } from 'ramda';
 
 import { Jukebox } from './jukebox.component';
 import { JukeboxActions } from '../../modules/jukebox/jukebox.redux';
+import { SocketActions } from '../../modules/socket/socket.redux';
 import { selectPlaylist } from '../../modules/jukebox/jukebox.selectors';
 
 
@@ -16,6 +17,8 @@ const mapStateToProps = createStructuredSelector({
 
 export const mapDispatchToProps = (dispatch) => bindActionCreators({
   getPlaylist: JukeboxActions.getPlaylist,
+  initializeSocket: SocketActions.initialize,
+  destroySocket: SocketActions.destroy,
 }, dispatch);
 
 export default compose(

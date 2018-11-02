@@ -18,6 +18,8 @@ export class RootContainer extends Component {
       <Switch>
         <Route exact path="/" render={() => <Redirect to={DEFAULT_LOCALE} />} />
 
+        <Route exact path="/jukebox" render={() => <Redirect to={`${DEFAULT_LOCALE}/jukebox`} />} />
+
         <Route exact path="/404" component={NotFound} />
 
         <Route path="/:status">

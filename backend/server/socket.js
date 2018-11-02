@@ -5,9 +5,9 @@ const io = socketIO.listen(app.listen(port.sockets));
 
 // namespace
 const namespace = {
-  jukebox: 'jukebox',
-  multi: 'multi',
-  speed: 'speed',
+  jukebox: '/jukebox',
+  multi: '/multi',
+  speed: '/speed',
 };
 
 // sockets

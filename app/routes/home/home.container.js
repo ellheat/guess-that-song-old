@@ -6,16 +6,14 @@ import { withRouter } from 'react-router-dom';
 import { compose } from 'ramda';
 
 import { Home } from './home.component';
-import { UsersActions } from '../../modules/users/users.redux';
-import { selectUsersList } from '../../modules/users/users.selectors';
 
 
 const mapStateToProps = createStructuredSelector({
-  usersList: selectUsersList,
+
 });
 
 export const mapDispatchToProps = (dispatch) => bindActionCreators({
-  connectUser: UsersActions.connectUser,
+
 }, dispatch);
 
 export default compose(

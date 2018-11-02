@@ -3,7 +3,7 @@ import { eventChannel } from 'redux-saga';
 import { JukeboxActions } from './jukebox.redux';
 
 function getPlaylist(emit, socket) {
-  socket.io.on(envConfig.socket.event.getPlaylist, (data) => {
+  socket.on(envConfig.socket.event.getPlaylist, (data) => {
     emit(JukeboxActions.getPlaylistSuccess(data));
   });
 }

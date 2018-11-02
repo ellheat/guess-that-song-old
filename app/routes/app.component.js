@@ -17,11 +17,9 @@ export class App extends PureComponent {
       push: PropTypes.func.isRequired,
     }).isRequired,
     location: PropTypes.object.isRequired,
-    initializeSocket: PropTypes.func.isRequired,
   };
 
   componentDidMount() {
-    this.props.initializeSocket();
     const language = this.props.match.params.lang || DEFAULT_LOCALE;
     if (appLocales.indexOf(language) === -1) {
       this.props.setLanguage(DEFAULT_LOCALE);
