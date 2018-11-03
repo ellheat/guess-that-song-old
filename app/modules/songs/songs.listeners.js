@@ -4,7 +4,6 @@ import { SongsActions } from './songs.redux';
 
 function getSong(emit, socket) {
   socket.on(envConfig.socketEvents.getSong, (data) => {
-    console.log('song', data);
     emit(SongsActions.getSongSuccess(data));
   });
 }

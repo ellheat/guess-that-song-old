@@ -2,7 +2,6 @@ import envConfig from 'env-config';
 import { put, takeLatest, call, take } from 'redux-saga/effects';
 import { UsersTypes } from './users.redux';
 import { usersListeners } from './users.listeners';
-import { SongsActions } from '../songs/songs.redux';
 import { SocketActions } from '../socket/socket.redux';
 import Socket from '../../services/socket';
 

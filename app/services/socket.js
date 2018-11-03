@@ -5,8 +5,13 @@ import io from 'socket.io-client';
 export default class Socket {
   socket = null;
 
-  initialize() {
-    this.socket = io(`${envConfig.url}:${envConfig.socketPort}`);
+  initialize(namespace) {
+    this.socket = io(`${envConfig.url}:${envConfig.socket.port}`);
+    this.socket.nsp = namespace;
+  }
+
+  destroy() {
+    this.socket.destroy();
   }
 
   get io() {

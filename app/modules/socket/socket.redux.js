@@ -1,18 +1,27 @@
 import { createActions, createReducer } from 'reduxsauce';
-import { Record } from 'immutable';
+import { Record, Map, fromJS } from 'immutable';
 
 export const { Types: SocketTypes, Creators: SocketActions } = createActions({
-  createSocket: ['data'],
-}, { prefix: 'USERS_' });
+  initialize: ['namespace'],
+  initializeSuccess: ['data'],
+  destroy: ['namespace'],
+  destroySuccess: ['namespace'],
+}, { prefix: 'SOCKET_' });
 
 const SocketRecord = new Record({
-  io: null,
+  jukebox: Map(),
+  multi: Map(),
+  speed: Map(),
 });
 
 export const INITIAL_STATE = new SocketRecord({});
 
-const createSocketHandler = (state = INITIAL_STATE, action) => state.set('io', action.data);
+const initializeSuccessHandler = (state = INITIAL_STATE, action) =>
+  state.set(action.data.nsp.replace('/', ''), fromJS(action.data));
+
+const destroySuccessHandler = (state = INITIAL_STATE, action) => state.set(action.namespace.replace('/', ''), Map());
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [SocketTypes.CREATE_SOCKET]: createSocketHandler,
+  [SocketTypes.INITIALIZE_SUCCESS]: initializeSuccessHandler,
+  [SocketTypes.DESTROY_SUCCESS]: destroySuccessHandler,
 });

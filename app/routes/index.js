@@ -5,7 +5,7 @@ import { DEFAULT_LOCALE } from '../modules/locales/locales.redux';
 
 import App from './app.container';
 import { Home } from './home';
-import { Status } from './status';
+import { Jukebox } from './jukebox';
 import { NotFound } from './notFound';
 
 export class RootContainer extends Component {
@@ -18,13 +18,15 @@ export class RootContainer extends Component {
       <Switch>
         <Route exact path="/" render={() => <Redirect to={DEFAULT_LOCALE} />} />
 
+        <Route exact path="/jukebox" render={() => <Redirect to={`${DEFAULT_LOCALE}/jukebox`} />} />
+
         <Route exact path="/404" component={NotFound} />
 
         <Route path="/:status">
           <App location={this.props.location}>
             <Switch>
               <Route exact path="/:lang" component={Home} />
-              <Route exact path="status" component={Status} />
+              <Route exact path="/:lang/jukebox" component={Jukebox} />
 
               <Route component={NotFound} />
             </Switch>
