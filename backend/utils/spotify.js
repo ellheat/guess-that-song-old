@@ -11,6 +11,20 @@ const spotifyApi = new SpotifyWebApi({
   clientSecret: spotifyKeys.clientSecret,
 });
 
+const spotifyAuthorization = () => new Promise((resolve, reject) => {
+  resolve('asdasd');
+  spotifyApi.clientCredentialsGrant().then(
+    data => {
+      console.log('clientCredentialsGrant', data);
+      resolve(data);
+    },
+    err => {
+      console.log('Something went wrong!', err); // eslint-disable-line
+      reject();
+    }
+  );
+});
+
 const getSpotifyToken = () => new Promise((resolve, reject) => {
   spotifyApi.clientCredentialsGrant().then(
     data => {
@@ -87,6 +101,7 @@ const getPlaylist = () => {
 
 
 module.exports = {
+  spotifyAuthorization,
   getSpotifyToken,
   fetchPlaylist,
   getPlaylist,

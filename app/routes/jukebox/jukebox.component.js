@@ -18,23 +18,10 @@ export class Jukebox extends PureComponent {
   componentDidMount() {
     this.props.initializeSocket(envConfig.socket.namespace.jukebox);
     this.props.getPlaylist();
-    this.redirect();
   }
 
   componentWillUnmount() {
     this.props.destroySocket(envConfig.socket.namespace.jukebox);
-  }
-
-  redirect() {
-    const scopes = 'user-read-private user-read-email';
-    const redirectUri = 'http://localhost:3000/callback';
-    const url = 'https://accounts.spotify.com/authorize' +
-      '?response_type=token' +
-      '&client_id=' + 'clientId' +
-      (scopes ? '&scope=' + encodeURIComponent(scopes) : '') +
-      '&redirect_uri=' + encodeURIComponent(redirectUri);
-
-    window.location.href = url;
   }
 
   render() {
