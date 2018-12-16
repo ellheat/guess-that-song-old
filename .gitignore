@@ -8,9 +8,9 @@ node_modules
 stats.json
 dist
 
+lambda
+
 # Cruft
 .DS_Store
 npm-debug.log
 .idea
-app/environment/local.js
-backend/json/spotify.json

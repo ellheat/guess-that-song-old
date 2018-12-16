@@ -39,20 +39,10 @@
     // https://github.com/eslint/eslint/issues/2102
     "chai-friendly/no-unused-expressions": 1,
     // https://github.com/eslint/eslint/issues/2102
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": [
-          "internals/**",
-          "**/*.spec.js"
-        ]
-      }
-    ]
+    "import/no-extraneous-dependencies": 0
   },
   "settings": {
     "import/core-modules": [
-      "local-env-config",
-      "env-config",
       "report-error",
       "json-server",
       "nock",

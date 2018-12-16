@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App: Component should render App when language is set 1`] = `
+<Fragment>
+  <HelmetWrapper
+    defaultTitle="MyRoma"
+    defer={true}
+    encodeSpecialCharacters={true}
+    titleTemplate="%s - MyRoma"
+  />
+  <IntlProvider
+    locale="en"
+    location={Object {}}
+    messages={
+      Object {
+        "cameraStream.imagePlaceholder": "Unfortunately, you have not agreed to share the camera. You can upload photo by using left button.",
+        "grid.cta": "New message",
+        "home.welcome": "Hello World!",
+        "intro.button": "Explore MyRoma",
+        "intro.paragraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis justo non convallis ornare.",
+        "intro.title": "Alfonso, Mexico",
+        "language.differentLanguage": "Español",
+        "language.differentLanguageShort": "ES",
+        "menu.home": "Home",
+        "menu.itemPlaceholder": "Lorem ipsum",
+        "menu.privacy": "Privacy",
+        "menu.terms": "Terms & conditions",
+        "menu.trailer": "Trailer",
+        "menu.watchFilm": "Watch film",
+        "notFound.button": "Explore MyRoma",
+        "notFound.firstParagraph": "We are very sorry for the inconvience.",
+        "notFound.pageTitle": "Not found",
+        "notFound.secondParagraph": "It looks like you are trying to access a page that do not exist.",
+        "notFound.title": "Error: 404",
+        "photo.photoFormatError": "Your file must be in a .jpg or .png format",
+        "photo.placeholder": "Take a photo or upload an image",
+        "photoForm.back": "Back",
+        "photoForm.photoFormatError": "Your file must be in a .jpg or .png format",
+        "photoForm.submit": "Send your message",
+        "photoForm.textLabel": "Text",
+        "photoForm.textMaxLengthError": "Your message should not be longer than 255 characters",
+        "photoForm.textMinLengthError": "Your message should not be shorter than 2 characters",
+        "photoForm.textPlaceholder": "Text",
+        "photoForm.textRequiredError": "Either text or photo is required",
+        "photoForm.userCountryLabel": "Country",
+        "photoForm.userCountryPlaceholder": "Country",
+        "photoForm.userCountryRequiredError": "Country is required",
+        "photoForm.userNameLabel": "Name",
+        "photoForm.userNameMaxLengthError": "The name should not be longer than 16 characters",
+        "photoForm.userNameMinLengthError": "The name should not be shorter than 2 characters",
+        "photoForm.userNamePlaceholder": "Name",
+        "photoForm.userNameRequiredError": "Name is required",
+        "photoSuccess.explore": "Explore messages",
+        "photoSuccess.title": "Your message has been sent. The message will appear after moderator accepts it",
+        "privacy.firstParagraph": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis justo non convallis ornare. Donec commodo rhoncus nunc quis rutrum.",
+        "privacy.pageTitle": "Privacy",
+        "privacy.secondParagraph": "Aliquam eu quam ultricies, consectetur ante at, rutrum tellus. Cras arcu nunc, lacinia eu faucibus quis, commodo eu risus. Fusce nibh turpis, mollis eu pharetra tincidunt, iaculis in est.",
+        "privacy.thirdParagraph": "Vestibulum molestie orci libero, eget ullamcorper sapien cursus sit amet. Donec nec diam scelerisque libero imperdiet fermentum ac vitae lacus. In nibh dolor, sollicitudin ut purus maximus, dictum tincidunt magna. Quisque luctus dignissim erat et cursus. Nullam suscipit metus sed quam fermentum fermentum.",
+        "privacy.title": "Privacy",
+        "selectField.noOptionsMessage": "Not found",
+        "share.title": "Share your message with the world:",
+        "terms.firstParagraph": "1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque facilisis justo non convallis ornare.",
+        "terms.pageTitle": "Terms & Conditions",
+        "terms.secondParagraph": "2. Donec commodo rhoncus nunc quis rutrum.",
+        "terms.thirdParagraph": "3. Aliquam eu quam ultricies, consectetur ante at, rutrum tellus.",
+        "terms.title": "Terms & Conditions",
+        "trailer.description": "Time and Space constrain us, but they also define who we are, creating inexplicable bonds with the others that flow with us at the same time and through the same places.",
+        "trailer.pageTitle": "Trailer",
+        "trailer.title": "Roma Official Trailer",
+      }
+    }
+  >
+    <Connect(InjectIntl(withRouter(Header))) />
+    <div
+      className="app__children"
+    >
+      Children
+    </div>
+    <Connect(withRouter(Modal)) />
+  </IntlProvider>
+</Fragment>
+`;
