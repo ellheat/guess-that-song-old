@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const port = require('../config/ports');
 const app = express();
 
@@ -7,6 +8,7 @@ const { getSpotifyToken, fetchPlaylist } = require('../utils/spotify');
 
 
 const configureServer = () => new Promise((resolve) => {
+  app.use(express.static(path.join(__dirname, '../../build')));
   app.listen(port.api, () => {
     console.log(`Backend listening on port ${port.api}!`.success); // eslint-disable-line
     getCharacters().then(() => console.log('Characters created'.success)); // eslint-disable-line
