@@ -1,3 +1,3 @@
 require('./jukebox');
-require('./multi');
+require('./multiplayer');
 require('./speed');

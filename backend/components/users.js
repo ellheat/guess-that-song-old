@@ -1,23 +1,28 @@
-const USERS_LIST = [];
+const { namespace } = require('../server/socket');
 
-
-const addUser = (user, id) => {
-  user.id = id;
-  USERS_LIST.push(user);
+const USER_LIST = {
+  [namespace.multiplayer]: [],
+  [namespace.speed]: [],
 };
 
-const removeUser = (id) => new Promise((resolve) => {
-  const removedUser = USERS_LIST.find(user => user.id === id);
-  USERS_LIST.splice(USERS_LIST.indexOf(removedUser), 1);
+const addUser = (user, id, namespace) => {
+  user.id = id;
+  USER_LIST[namespace].push(user);
+  console.log(`${user.name} has joined - ${namespace.replace('/', '')}`.information); // eslint-disable-line
+};
+
+const removeUser = (id, namespace) => new Promise((resolve) => {
+  const removedUser = USER_LIST[namespace].find(user => user.id === id);
+  USER_LIST[namespace].splice(USER_LIST[namespace].indexOf(removedUser), 1);
   resolve(removedUser.name);
 });
 
-const getUsersList = () => {
-  return USERS_LIST;
+const getUserList = (namespace) => {
+  return USER_LIST[namespace];
 };
 
 module.exports = {
   addUser,
   removeUser,
-  getUsersList,
+  getUserList,
 };
