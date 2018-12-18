@@ -108,7 +108,7 @@
     "start:backend": "cd backend && node index.js",
     "build": "run-p build:**",
     "build:app": "node scripts/build.js",
-    "build:backend": "netlify-lambda build backend"
+    "build:backend": "NODE_ENV=production netlify-lambda build backend"
   },
   "husky": {
     "hooks": {
