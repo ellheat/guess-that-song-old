@@ -1,3 +1,4 @@
+const serverless = require('serverless-http');
 const express = require('express');
 const path = require('path');
 const port = require('../config/ports');
@@ -9,8 +10,9 @@ const { getSpotifyToken, fetchPlaylist } = require('../utils/spotify');
 
 
 const configureServer = () => new Promise((resolve) => {
-  app.use(express.static(path.join(__dirname, '../../build')));
-  app.use('/.netlify/functions/server', router);
+  router.get('/', (req, res) => {
+    res.send(express.static(path.join(__dirname, '../../build')));
+  });
   app.listen(port.api, () => {
     console.log(`Backend listening on port ${port.api}!`.success); // eslint-disable-line
     getCharacters().then(() => console.log('Characters created'.success)); // eslint-disable-line
@@ -27,3 +29,5 @@ module.exports = {
   port,
   configureServer,
 };
+
+exports.handler = serverless(app);
