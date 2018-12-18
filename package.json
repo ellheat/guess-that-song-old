@@ -48,6 +48,7 @@
     "lodash.random": "^3.2.0",
     "mini-css-extract-plugin": "^0.5.0",
     "mmdb-reader": "^1.2.0",
+    "netlify-lambda": "^1.1.1",
     "normalize.css": "^8.0.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "path": "^0.12.7",
