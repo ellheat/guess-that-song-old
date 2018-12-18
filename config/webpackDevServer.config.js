@@ -109,7 +109,7 @@ module.exports = function (proxy, allowedHost) {
 
         if (userAgent.includes('Twitterbot') || userAgent.includes('facebookexternal')) {
           const fakeImage = 'https://dummyimage.com/800/09f/fff.png';
-          const fakeTitle = 'MyRoma';
+          const fakeTitle = 'Guess That Song';
           res.send(`
             <html prefix="og: http://ogp.me/ns#">
               <head>
