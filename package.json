@@ -99,8 +99,10 @@
     "extract-intl": "NODE_ENV=development extract-messages -l=en,pl -o src/translations -d en --flat true 'src/**/!(*.test).js'",
     "start": "run-p start:**",
     "start:app": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "start:backend": "cd backend && node index.js",
+    "build": "run-p build:**",
+    "build:app": "node scripts/build.js",
+    "build:backend": "npm run start:backend"
   },
   "husky": {
     "hooks": {
