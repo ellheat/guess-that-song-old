@@ -1,17 +1,16 @@
 import { put, takeLatest, call, take, select } from 'redux-saga/effects';
 import { JukeboxTypes } from './jukebox.redux';
 import { jukeboxListeners } from './jukebox.listeners';
-import { selectJukeboxSocket } from '../socket/socket.selectors';
+import { selectJukebox } from '../pusher/pusher.selectors';
 
 export function* getPlaylist() {
-  const socket = yield select(selectJukeboxSocket);
+  // const pusher = yield select(selectJukebox);
 
-  socket.io.emit(process.env.REACT_APP_SOCKET_EVENT_CONNECT);
-  const channel = yield call(jukeboxListeners, socket);
-  while (true) {
-    const action = yield take(channel);
-    yield put(action);
-  }
+  // const channel = yield call(jukeboxListeners, socket);
+  // while (true) {
+  //   const action = yield take(channel);
+  //   yield put(action);
+  // }
 }
 
 export default function* jukeboxSaga() {

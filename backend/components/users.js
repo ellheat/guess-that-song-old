@@ -1,4 +1,4 @@
-const { namespace } = require('../server/socket');
+const { namespace } = require('../server/pusher');
 
 const USER_LIST = {
   [namespace.multiplayer]: [],

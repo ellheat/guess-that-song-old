@@ -8,19 +8,19 @@ import { Container, Title } from './jukebox.styles';
 
 export class Jukebox extends PureComponent {
   static propTypes = {
-    initializeSocket: PropTypes.func.isRequired,
-    destroySocket: PropTypes.func.isRequired,
+    initializePusher: PropTypes.func.isRequired,
+    destroyPusher: PropTypes.func.isRequired,
     getPlaylist: PropTypes.func.isRequired,
     playlist: PropTypes.object,
   };
 
   componentDidMount() {
-    this.props.initializeSocket(process.env.REACT_APP_SOCKET_NAME_JUKEBOX);
+    this.props.initializePusher(process.env.REACT_APP_SOCKET_NAME_JUKEBOX);
     this.props.getPlaylist();
   }
 
   componentWillUnmount() {
-    this.props.destroySocket(process.env.REACT_APP_SOCKET_EVENT_DISCONNECT);
+    this.props.destroyPusher(process.env.REACT_APP_SOCKET_EVENT_DISCONNECT);
   }
 
   render() {

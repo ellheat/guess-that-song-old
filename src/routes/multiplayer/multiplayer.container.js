@@ -9,7 +9,7 @@ import { Multiplayer } from './multiplayer.component';
 
 import { PlayerActions } from '../../modules/player/player.redux';
 import { selectPlayerList } from '../../modules/player/player.selectors';
-import { SocketActions } from '../../modules/socket/socket.redux';
+import { PusherActions } from '../../modules/pusher/pusher.redux';
 
 
 const mapStateToProps = createStructuredSelector({
@@ -17,8 +17,8 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export const mapDispatchToProps = (dispatch) => bindActionCreators({
-  initializeSocket: SocketActions.initialize,
-  destroySocket: SocketActions.destroy,
+  initializePusher: PusherActions.initialize,
+  destroyPusher: PusherActions.destroy,
   connectPlayer: PlayerActions.connect,
 }, dispatch);
 

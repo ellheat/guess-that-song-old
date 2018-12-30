@@ -10,19 +10,19 @@ import { PlayerList } from '../../components/playerList/playerList.component';
 
 export class Multiplayer extends PureComponent {
   static propTypes = {
-    initializeSocket: PropTypes.func.isRequired,
-    destroySocket: PropTypes.func.isRequired,
+    initializePusher: PropTypes.func.isRequired,
+    destroyPusher: PropTypes.func.isRequired,
     connectPlayer: PropTypes.func.isRequired,
     playerList: PropTypes.object.isRequired,
   };
 
   componentDidMount() {
-    this.props.initializeSocket(process.env.REACT_APP_SOCKET_NAME_MULTIPLAYER);
-    this.props.connectPlayer(process.env.REACT_APP_SOCKET_NAME_MULTIPLAYER);
+    this.props.initializePusher(process.env.REACT_APP_SOCKET_NAME_MULTIPLAYER);
+    this.props.connectPlayer();
   }
 
   componentWillUnmount() {
-    this.props.destroySocket(process.env.REACT_APP_SOCKET_NAME_MULTIPLAYER);
+    this.props.destroyPusher(process.env.REACT_APP_SOCKET_NAME_MULTIPLAYER);
   }
 
   render() {
