@@ -4,6 +4,14 @@ import { playerListeners } from './player.listeners';
 import { selectMultiplayer } from '../pusher/pusher.selectors';
 import api from '../../services/api';
 
+export function* startListening(pusher) {
+   const channel = yield call(playerListeners, pusher);
+    while (true) {
+      const action = yield take(channel);
+      yield put(action);
+    }
+}
+
 export function* connectPlayer({ namespace }) {
   try {
     let pusher = null;
@@ -11,15 +19,11 @@ export function* connectPlayer({ namespace }) {
     if (namespace === process.env.REACT_APP_SOCKET_NAME_MULTIPLAYER) {
       pusher = yield select(selectMultiplayer);
     }
+    
+    yield fork(startListening, pusher);
 
     const { data } = yield api.get('/multiplayer/connect');
     yield put(PlayerActions.connectSuccess(data));
-
-    const channel = yield call(playerListeners, pusher);
-    while (true) {
-      const action = yield take(channel);
-      yield put(action);
-    }
   } catch (e) {
     console.log(e); // eslint-disable-line
   }
