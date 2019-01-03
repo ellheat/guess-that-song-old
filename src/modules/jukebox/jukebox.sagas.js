@@ -1,4 +1,4 @@
-import { put, takeLatest, call, take, select } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 import { JukeboxTypes } from './jukebox.redux';
 import { jukeboxListeners } from './jukebox.listeners';
 import { selectJukebox } from '../pusher/pusher.selectors';

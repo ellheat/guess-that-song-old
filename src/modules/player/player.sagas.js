@@ -1,8 +1,16 @@
-import { put, takeLatest, call, take, select } from 'redux-saga/effects';
+import { put, takeLatest, call, take, select, fork } from 'redux-saga/effects';
 import { PlayerActions, PlayerTypes } from './player.redux';
 import { playerListeners } from './player.listeners';
 import { selectMultiplayer } from '../pusher/pusher.selectors';
 import api from '../../services/api';
+
+export function* startListening(pusher) {
+  const channel = yield call(playerListeners, pusher);
+  while (true) {
+    const action = yield take(channel);
+    yield put(action);
+  }
+}
 
 export function* connectPlayer({ namespace }) {
   try {
@@ -12,14 +20,10 @@ export function* connectPlayer({ namespace }) {
       pusher = yield select(selectMultiplayer);
     }
 
+    yield fork(startListening, pusher);
+
     const { data } = yield api.get('/multiplayer/connect');
     yield put(PlayerActions.connectSuccess(data));
-
-    const channel = yield call(playerListeners, pusher);
-    while (true) {
-      const action = yield take(channel);
-      yield put(action);
-    }
   } catch (e) {
     console.log(e); // eslint-disable-line
   }

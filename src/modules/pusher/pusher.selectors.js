@@ -8,10 +8,7 @@ export const selectJukebox = createSelector(
 );
 
 export const selectMultiplayer = createSelector(
-  selectSocketDomain, state => {
-    console.log('state', state);
-    return state.get('multiplayer');
-  }
+  selectSocketDomain, state => state.get('multiplayer')
 );
 
 export const selectSpeed = createSelector(

@@ -18,7 +18,7 @@ export class Multiplayer extends PureComponent {
 
   componentDidMount() {
     this.props.initializePusher(process.env.REACT_APP_SOCKET_NAME_MULTIPLAYER);
-    this.props.connectPlayer();
+    this.props.connectPlayer(process.env.REACT_APP_SOCKET_NAME_MULTIPLAYER);
   }
 
   componentWillUnmount() {
