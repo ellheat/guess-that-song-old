@@ -6,14 +6,14 @@ const io = socketIO.listen(app.listen(port.sockets));
 // namespace
 const namespace = {
   jukebox: '/jukebox',
-  multi: '/multi',
+  multiplayer: '/multiplayer',
   speed: '/speed',
 };
 
 // sockets
 const sockets = {
   jukebox: io.of(namespace.jukebox),
-  multi: io.of(namespace.multi),
+  multiplayer: io.of(namespace.multiplayer),
   speed: io.of(namespace.speed),
 };
 
@@ -23,7 +23,7 @@ const events = {
   disconnect: 'disconnect',
   addPlayer: 'addPlayer',
   removePlayer: 'removePlayer',
-  playersList: 'playersList',
+  playerList: 'playerList',
   addPoints: 'addPoints',
   getSong: 'getSong',
   getPlaylist: 'getPlaylist',
@@ -32,4 +32,5 @@ const events = {
 module.exports = {
   socket: sockets,
   event: events,
+  namespace,
 };

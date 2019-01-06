@@ -13,6 +13,7 @@ const getSingleCharacter = () => {
     color: color,
     points: 0,
     correctAnswers: 0,
+    roundsWon: 0,
   });
 };
 
@@ -30,6 +31,7 @@ const getCharacters = () => new Promise((resolve) => {
       color: randomColor,
       points: 0,
       correctAnswers: 0,
+      roundsWon: 0,
     });
   });
   resolve();

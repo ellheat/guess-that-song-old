@@ -10,7 +10,7 @@ export const { Types: SocketTypes, Creators: SocketActions } = createActions({
 
 const SocketRecord = new Record({
   jukebox: Map(),
-  multi: Map(),
+  multiplayer: Map(),
   speed: Map(),
 });
 

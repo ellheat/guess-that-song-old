@@ -7,13 +7,19 @@ import { compose } from 'ramda';
 
 import { Multiplayer } from './multiplayer.component';
 
+import { PlayerActions } from '../../modules/player/player.redux';
+import { selectPlayerList } from '../../modules/player/player.selectors';
+import { SocketActions } from '../../modules/socket/socket.redux';
+
 
 const mapStateToProps = createStructuredSelector({
-
+  playerList: selectPlayerList,
 });
 
 export const mapDispatchToProps = (dispatch) => bindActionCreators({
-
+  initializeSocket: SocketActions.initialize,
+  destroySocket: SocketActions.destroy,
+  connectPlayer: PlayerActions.connect,
 }, dispatch);
 
 export default compose(
